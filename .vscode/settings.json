@@ -1,0 +1,13 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "files.exclude": {
+        "**/*.pyc": {"when": "$(basename).py"},
+        "**/__pycache__": true,
+        "**/*__pycache__": true
+
+    },
+    "python.analysis.typeCheckingMode": "off", 
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.extraPaths": ["./basic_english/src"]
+}
