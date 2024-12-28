@@ -30,6 +30,16 @@ class PhraseFinder(PhraseFinderInterface):
 
         return List[response]
 
+    def find_all_type_phrase(self, type_phrase: str) -> Dict:
+        type_phrases = self.__phrases_repository.read_all_type_phrases(type_phrase)
+
+        response = self.__validation_database(type_phrases)
+
+        if self.__verification_error(response):
+            return self.__format_response_database(type_phrases)
+
+        return {"Error": response}
+
     @classmethod
     def __validation_database(cls, phrases: list) -> Union[HttpNotFound, HttpBadRequest, None]:
         if phrases == [] or isinstance(phrases, NotFoundErr):

@@ -9,6 +9,8 @@ class PhrasesRepositoryInterface(ABC):
     def read_specific_phrase(self, phrase: str) -> List[Phrases]: pass
     @abstractmethod        
     def read_all_phrases(self) -> List[Phrases]: pass
+    @abstractmethod        
+    def read_all_type_phrases(self, type_phrase: str) -> List[Phrases]: pass
     @abstractmethod
     def update_phrase(self, phrase_corrent: str, json: dict) -> None: pass
     @abstractmethod

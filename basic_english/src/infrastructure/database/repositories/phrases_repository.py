@@ -1,8 +1,11 @@
+from urllib import response
+
+from flask.config import T
 from ..entities.phrases import Phrases
 from ..settings.connection import DBConnetionHandler
 from basic_english.src.data.interfaces.phrases_repository import PhrasesRepositoryInterface
 from ..entities.phrases import Phrases
-from typing import List
+from typing import List, Type
 
 class PhrasesRepository(PhrasesRepositoryInterface):
     @classmethod
@@ -23,7 +26,6 @@ class PhrasesRepository(PhrasesRepositoryInterface):
         with DBConnetionHandler() as database:
             try:
                 return database.session.query(Phrases).filter_by(phrase=phrase).all()
-                return True
 
             except Exception as exception:
                 database.session.rollback()
@@ -34,7 +36,17 @@ class PhrasesRepository(PhrasesRepositoryInterface):
         with DBConnetionHandler() as database:
             try:
                 return database.session.query(Phrases).all()
-                return True
+
+            except Exception as exception:
+                database.session.rollback()
+                return exception
+    
+    @classmethod
+    def read_all_type_phrases(cls, type_phrase: str) -> List[Phrases]:
+        with DBConnetionHandler() as database:
+            try:
+                response = database.session.query(Phrases).filter_by(type_phrase=type_phrase).all()
+                return response
 
             except Exception as exception:
                 database.session.rollback()
