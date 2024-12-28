@@ -53,8 +53,8 @@ class PhraseFinder(PhraseFinderInterface):
     def __format_response_database(cls, phrases: List[Phrases], attributes: list = []) -> Dict:
         if isinstance(phrases, list):
             for phrase in phrases:
-                attributes.append({"phrase": phrase.phrase, "translation": phrase.translation, "formal": phrase.formal})
+                attributes.append({"phrase": phrase.phrase, "translation": phrase.translation, "formal": phrase.formal, "type_phrase": phrase.type_phrase})
         else:
-            attributes.append({"phrase": phrases.phrase, "translation": phrases.translation, "formal": phrases.formal})
+            attributes.append({"phrase": phrases.phrase, "translation": phrases.translation, "formal": phrases.formal, "type_phrase": phrases.type_phrase})
 
         return {"type": "Phrases", "count": len(phrases), "attributes": attributes}
