@@ -11,22 +11,18 @@ class PhraseUpdateController(ControllerInterface):
 
     def handle(self, http_request: HttpRequest) -> HttpResponse:
         try:
-            phrase_current = http_request.body["phrase_current"]
-            phrase = http_request.body["phrase"]
-            translation = http_request.body["translation"]
-            formal = http_request.body["formal"]
+            phrase_current = http_request.body.get("phrase_current")
+            phrase = http_request.body.get("phrase")
+            translation = http_request.body.get("translation")
+            formal = http_request.body.get("formal")
+            type_phrase = http_request.body.get("type_phrase")
 
-        except KeyError:
-            if phrase_current != None and phrase_current != " ":
-                if "phrase" not in http_request.body or not http_request.body["phrase"]:
-                    phrase = None
-                if "translation" not in http_request.body or not http_request.body["translation"]:
-                    translation = None
-                if "formal" not in http_request.body or not http_request.body["formal"]:
-                    formal = None
-            else:
-                return HttpNotFound(status_code=400, body={"error": "'phrase_current' not found or Parameters invalids 'KeyError'."})
+            if phrase_current == None or phrase_current == " ":
+                return HttpNotFound(status_code=400, body={"error": "'phrase_current' not found."})
 
-            response = self.__use_case.update(phrase_current, phrase, translation, formal)
-        
+            response = self.__use_case.update(phrase_current, phrase, translation, formal, type_phrase)
+
+        except Exception as exception:
+            return HttpResponse(status_code=400, body={"error": str(exception)})
+
         return HttpResponse(status_code=200, body={"data": response})

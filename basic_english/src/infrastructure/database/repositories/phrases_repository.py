@@ -6,10 +6,10 @@ from typing import List
 
 class PhrasesRepository(PhrasesRepositoryInterface):
     @classmethod
-    def insert_phrase(cls, phrase: str, translation: str, formal: bool) -> None:
+    def insert_phrase(cls, phrase: str, translation: str, formal: bool, type_phrase: str) -> None:
         with DBConnetionHandler() as database:
             try:
-                new_resgistry = Phrases(phrase=phrase, translation=translation, formal=formal)
+                new_resgistry = Phrases(phrase=phrase, translation=translation, formal=formal, type_phrase=type_phrase)
                 database.session.add(new_resgistry)
                 database.session.commit()
                 return True

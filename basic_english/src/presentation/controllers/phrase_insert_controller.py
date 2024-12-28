@@ -13,10 +13,11 @@ class PhraseInsertController(ControllerInterface):
             phrase = http_request.body["phrase"]
             translation = http_request.body["translation"]
             formal = http_request.body["formal"]
+            type_phrase = http_request.body["type_phrase"]
 
         except KeyError:
-            HttpBadRequest("The attribute input not is 'phrase' or 'translation' or 'formal'.")
+            HttpBadRequest("The attribute input not is 'phrase' or 'translation' or 'formal' or 'type_phrase'.")
 
-        response = self.__use_case.insert(phrase, translation, formal)
+        response = self.__use_case.insert(phrase, translation, formal, type_phrase)
 
         return HttpResponse(status_code=200, body={"data": response})

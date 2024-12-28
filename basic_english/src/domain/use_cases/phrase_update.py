@@ -3,4 +3,4 @@ from typing import Dict
 
 class PhraseUpdate(ABC):
     @abstractmethod
-    def update(self, phrase_corrent: str, phrase: str, translation: str, formal: bool) -> Dict: pass
+    def update(self, phrase_corrent: str, phrase: str, translation: str, formal: bool, type_phrase: str) -> Dict: pass

@@ -4,7 +4,7 @@ from basic_english.src.domain.models.phrases import Phrases
 
 class PhrasesRepositoryInterface(ABC):
     @abstractmethod
-    def insert_phrase(self, phrase: str, translation: str, formal: bool) -> None: pass
+    def insert_phrase(self, phrase: str, translation: str, formal: bool, type_phrase: str) -> None: pass
     @abstractmethod
     def read_specific_phrase(self, phrase: str) -> List[Phrases]: pass
     @abstractmethod        

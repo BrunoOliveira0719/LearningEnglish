@@ -3,4 +3,4 @@ from typing import Dict
 
 class PhraseInsert(ABC):
     @abstractmethod
-    def insert(self, phrase: str, translation: str, formal: bool) -> Dict: pass
+    def insert(self, phrase: str, translation: str, formal: bool, type_phrase: str) -> Dict: pass

@@ -8,6 +8,7 @@ class Phrases(Base):
     phrase = Column(String, nullable=False)
     translation = Column(String, nullable=False)
     formal = Column(Boolean, nullable=False)
+    type_phrase = Column(String, nullable=False)
 
     def __repr__(self):
-        return f"Phrases [(id={self.id}, phrase={self.phrase}, translation={self.translation}, formal={self.formal}]"
+        return f"Phrases [(id={self.id}, phrase={self.phrase}, translation={self.translation}, formal={self.formal}, type_phrase={self.type_phrase})]"
