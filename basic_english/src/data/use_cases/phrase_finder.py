@@ -12,6 +12,7 @@ class PhraseFinder(PhraseFinderInterface):
 
     def find(self, phrase: str) -> Dict:
         phrases = self.__phrases_repository.read_specific_phrase(phrase)
+        print(phrases)
 
         response = self.__validation_database(phrases)
 
@@ -22,6 +23,7 @@ class PhraseFinder(PhraseFinderInterface):
 
     def find_all(self) -> List:
         phrases = self.__phrases_repository.read_all_phrases()
+        print(phrases)
 
         response = self.__validation_database(phrases)
 
@@ -32,6 +34,7 @@ class PhraseFinder(PhraseFinderInterface):
 
     def find_all_type_phrase(self, type_phrase: str) -> Dict:
         type_phrases = self.__phrases_repository.read_all_type_phrases(type_phrase)
+        print(type_phrases)
 
         response = self.__validation_database(type_phrases)
 

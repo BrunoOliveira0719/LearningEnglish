@@ -33,7 +33,7 @@ def phrase_find():
 
     try:
         http_response = request_adapter(request, phrase_finder_composer())
-
+        
     except Exception as exception:
         http_response = handle_errors(exception)
 
